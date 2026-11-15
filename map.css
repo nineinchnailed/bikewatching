@@ -1,0 +1,128 @@
+html,
+body {
+  margin: 0;
+  padding: 5;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+#map {
+  width: 100%; /* Adjust width to your desired size */
+  height: 100%; /* Adjust height to your desired size */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for effect */
+  border-radius: 8px; /* Optional: rounded corners */
+}
+
+
+#map {
+  height: 500px;
+  width: 100%;
+}
+
+
+
+#map {
+  height: 500px;
+  width: 100%;
+  position: relative;
+}
+
+#map svg {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+#map svg circle {
+  fill: steelblue;
+  fill-opacity: 0.6;
+  stroke: white;
+  stroke-width: 1px;
+  pointer-events: auto;
+}
+
+#time-control {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+#time-slider {
+  flex: 1;
+  cursor: pointer;
+}
+
+#selected-time {
+  min-width: 80px;
+  font-weight: bold;
+}
+
+/* Traffic flow colors */
+#map circle,
+.legend > div {
+  --color-departures: steelblue;
+  --color-arrivals: darkorange;
+
+  --color: color-mix(
+    in oklch,
+    var(--color-departures) calc(100% * var(--departure-ratio)),
+    var(--color-arrivals)
+  );
+}
+
+/* Station circles */
+#map svg circle {
+  fill: var(--color);
+  pointer-events: auto;
+}
+
+/* Traffic flow colors */
+#map circle,
+.legend > div {
+  --color-departures: steelblue;
+  --color-arrivals: darkorange;
+
+  --color: color-mix(
+    in oklch,
+    var(--color-departures) calc(100% * var(--departure-ratio)),
+    var(--color-arrivals)
+  );
+}
+
+/* Legend layout */
+.legend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-block: 1.5rem;
+}
+
+.legend h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Individual legend items */
+.legend > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Colored circular swatches */
+.legend > div::before {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color);
+  flex-shrink: 0;
+}
